@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mongoserver:
+    image: mongo:latest
+    container_name: mongoserver
+    ports:
+      - "27017:27017"
+
+  redisserver:
+    image: redis:alpine
+    container_name: redisserver
+    ports:
+      - "6379:6379"
+
+  backend:
+   build: ./backend
+   container_name: backend
+   ports:
+    - "5000:5000"
+   depends_on:
+    - mongoserver
+    - redisserver
+  worker:
+    build: ./worker
+    container_name: worker
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
