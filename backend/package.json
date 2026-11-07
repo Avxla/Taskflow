@@ -4,7 +4,6 @@
   "description": "Backend para Taskflow con Express, MongoDB y Redis",
   "main": "server.js",
   "scripts": {
-    "build": "chmod +x node_modules/.bin/* && vite build",
     "start": "node server.js"
   },
   "dependencies": {
